@@ -2,6 +2,7 @@
 import React from 'react';
 import '../styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
+import TopicList from './TopicList';
 
 
 const PhotoListItem = (props) => {
@@ -9,9 +10,7 @@ const PhotoListItem = (props) => {
     <article className='photo-list__item'>
       <PhotoFavButton />
       <img src={props.imageSource} className='photo-list__image' />
-      
     </article>
- 
   );
   
 };
