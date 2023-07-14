@@ -3,15 +3,18 @@ import React from 'react';
 import '../styles/TopNavigationBar.scss';
 import TopicList from './TopicList';
 import FavBadge from './FavBadge';
-import { Fragment } from 'react';
 
-const TopNavigation = () => {
+const TopNavigation = (props) => {
+ 
+  // Boolean for seeing if state array has values
+  const likedStatus = props.likedPhotos.length > 0;
+
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <div className='topics-liked'>
-        <TopicList />
-        <FavBadge />
+        <TopicList topics={props.topics}/>
+        <FavBadge isFavPhotoExist={likedStatus}/>
       </div>
       
     </div>

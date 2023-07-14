@@ -1,17 +1,19 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import { FavIcon } from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-const  PhotoFavButton = function() {
-  const [like, setLike] = useState(false);
-  const color = like ? '#db0d0d' : '#EEEEEE';
+const  PhotoFavButton = function(props) {
+
+  
+  // Chnage color based on boolean photoIsLiked prop
+  const color = props.photoIsLiked ? '#db0d0d' : '#EEEEEE';
   
   return (
     <div
       className="photo-list__fav-icon"
       onClick={() => {
-        like === false ? setLike(true) : setLike(false);
+        props.photoIsLiked === false ? props.likePhoto(props.id) : props.unLikePhoto(props.id);
       }}
     >
       <div className="photo-list__fav-icon-svg">
