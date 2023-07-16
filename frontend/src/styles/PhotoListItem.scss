@@ -34,10 +34,12 @@
 
 .photo-list__user-details {
   display: flex;
+  align-items: center;
+
 }
 
 .photo-list__user-info {
-  margin-top: 5px;
+  margin-top: 5 px;
   font-weight: 700;
   font-size: 12px;
   margin-left: 8px;

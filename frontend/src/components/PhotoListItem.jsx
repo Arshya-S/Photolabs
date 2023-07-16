@@ -1,4 +1,3 @@
-
 import React from 'react';
 import '../styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
@@ -10,7 +9,7 @@ const PhotoListItem = (props) => {
   const photoIsLiked = props.likedPhotos.includes(props.id);
 
   return (
-    <article className='photo-list__item'>
+    <article className={props.classNameItem}>
       <PhotoFavButton
         likedPhotos={props.likedPhotos}
         likePhoto={props.likePhoto}
@@ -18,10 +17,21 @@ const PhotoListItem = (props) => {
         id={props.id}
         photoIsLiked = {photoIsLiked}
       />
-      <img src={props.imageSource} className='photo-list__image' />
+      <img src={props.imageSource} className={props.classNameImage}
+        onClick={() => {
+          props.setPhotoClicked(!props.photoClicked);
+          props.setPhotoClickedInfo(props.photo);
+        }}
+      />
+      <div className='photo-list__user-details'>
+        <img src={props.profileImage}  className='photo-list__user-profile'/>
+        <div className='photo-list__user-info'>
+          <h3>{props.userName}</h3>
+          <h5>{props.userCity}, {props.userCountry}</h5>
+        </div>
+      </div>
     </article>
   );
-  
 };
 
 
