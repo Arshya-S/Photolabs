@@ -1,20 +1,40 @@
-import React from 'react';
-import HomeRoute from './routes/HomeRoute';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './App.scss';
-import photos from './mocks/photos';
-import topics from './mocks/topics';
+
+import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
 
 
 const App = () => {
-  
+
   const {
     state,
     updateFavPhotos,
     setPhotoSelected,
     convertArr
   } = useApplicationData();
+
+
+  // state of photos and topics based on api given data
+  const [photos, setPhotos] = useState([]);
+  const [topics, setTopics] = useState([]);
+
+  // Api get request for photo and topic data
+  useEffect(() => {
+    const getPhotos = axios('/api/photos');
+    const getTopics = axios('api/topics');
+
+    const getRequests = [getPhotos, getTopics];
+
+    Promise.all(getRequests)
+      .then(response => {
+        setPhotos(response[0].data);
+        setTopics(response[1].data);
+      });
+  },[]);
+
 
   return (
     <div className="App">
@@ -46,10 +66,6 @@ const App = () => {
       }
     </div>
   );
-  
-  
-  
-  
 };
 
 export default App;

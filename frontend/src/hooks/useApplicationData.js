@@ -1,29 +1,31 @@
 import React, { useReducer } from 'react';
 
-const initialState = {
-  likedPhotos: [],
-  photoClicked: false,
-  photoClickedInfo: {},
+export const ACTIONS = {
+  LIKE_PHOTO: 'LIKE_PHOTO',
+  UNLIKE_PHOTO: 'UNLIKE_PHOTO',
+  SET_PHOTO_CLICKED: 'SET_PHOTO_CLICKED',
+  SET_PHOTO_CLICKED_INFO: 'SET_PHOTO_CLICKED_INFO'
 };
+
 
 const reducer = (state, action) => {
   switch (action.type) {
-  case 'LIKE_PHOTO':
+  case ACTIONS.LIKE_PHOTO:
     return {
       ...state,
       likedPhotos: [...state.likedPhotos, action.id],
     };
-  case 'UNLIKE_PHOTO':
+  case ACTIONS.UNLIKE_PHOTO:
     return {
       ...state,
       likedPhotos: state.likedPhotos.filter(photo => photo !== action.id),
     };
-  case 'SET_PHOTO_CLICKED':
+  case ACTIONS.SET_PHOTO_CLICKED:
     return {
       ...state,
       photoClicked: action.clicked,
     };
-  case 'SET_PHOTO_CLICKED_INFO':
+  case ACTIONS.SET_PHOTO_CLICKED_INFO:
     return {
       ...state,
       photoClickedInfo: action.info,
@@ -37,7 +39,11 @@ const reducer = (state, action) => {
 
 const useApplicationData = () => {
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, {
+    likedPhotos: [],
+    photoClicked: false,
+    photoClickedInfo: {},
+  });
 
   const likePhoto = (id) => {
     dispatch({ type: 'LIKE_PHOTO', id });
@@ -65,7 +71,8 @@ const useApplicationData = () => {
     state: state,
     updateFavPhotos: { likePhoto, unLikePhoto },
     setPhotoSelected: { setPhotoClicked, setPhotoClickedInfo },
-    convertArr: { convertToArray }
+    convertArr: { convertToArray },
+    dispatch: { dispatch }
   };
 
   return stateFunctions;
