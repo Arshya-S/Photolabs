@@ -6,7 +6,7 @@ import '../styles/PhotoFavButton.scss';
 const  PhotoFavButton = function(props) {
 
   
-  // Chnage color based on boolean photoIsLiked prop
+  // Change color based on boolean photoIsLiked prop
   const color = props.photoIsLiked ? '#db0d0d' : '#EEEEEE';
   
   return (

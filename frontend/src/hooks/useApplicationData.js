@@ -4,9 +4,9 @@ export const ACTIONS = {
   LIKE_PHOTO: 'LIKE_PHOTO',
   UNLIKE_PHOTO: 'UNLIKE_PHOTO',
   SET_PHOTO_CLICKED: 'SET_PHOTO_CLICKED',
-  SET_PHOTO_CLICKED_INFO: 'SET_PHOTO_CLICKED_INFO'
+  SET_PHOTO_CLICKED_INFO: 'SET_PHOTO_CLICKED_INFO',
+  SET_TOPIC_CHOSEN: 'SET_TOPIC_CHOSEN'
 };
-
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -30,6 +30,7 @@ const reducer = (state, action) => {
       ...state,
       photoClickedInfo: action.info,
     };
+
   default:
     throw new Error(
       `Tried to reduce with unsupported action type: ${action.type}`
@@ -61,18 +62,10 @@ const useApplicationData = () => {
     dispatch({ type: 'SET_PHOTO_CLICKED_INFO', info });
   };
 
-  const convertToArray = (photos) => {
-    const newArray = Object.values(photos).map(photo => photo);
-    return newArray;
-
-  };
-
   const stateFunctions = {
     state: state,
     updateFavPhotos: { likePhoto, unLikePhoto },
     setPhotoSelected: { setPhotoClicked, setPhotoClickedInfo },
-    convertArr: { convertToArray },
-    dispatch: { dispatch }
   };
 
   return stateFunctions;

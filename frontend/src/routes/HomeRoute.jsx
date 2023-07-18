@@ -6,11 +6,14 @@ import PhotoList from "../components/PhotoList";
 
 const HomeRoute = (props) => {
 
-  
-
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} likedPhotos={props.likedPhotos}/>
+      <TopNavigation
+        topics={props.topics}
+        likedPhotos={props.likedPhotos}
+        setTopicChosen={props.setTopicChosen}
+      />
+
       <PhotoList
         photos={props.photos}
         likedPhotos={props.likedPhotos}

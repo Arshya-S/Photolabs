@@ -5,13 +5,12 @@ import PhotoList from '../components/PhotoList';
 import PhotoListItem from '../components/PhotoListItem';
 
 export const PhotoDetailsModal = (props) => {
-
+  
   return (
     <div className='photo-details-modal'>
       <button className='photo-details-modal__close-button'
         onClick={() => {
           props.setPhotoClicked(!props.photoClicked);
-          props.setPhotoClickedInfo({});
         }}
       >
         <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,13 +46,12 @@ export const PhotoDetailsModal = (props) => {
       <p className='photo-details-modal__header'>Similar Photos</p>
       <div className='photo-details-modal__images'>
         <PhotoList
-          photos={props.convertToArray(props.photoClickedInfo.similarPhotos)}
+          photos={props.photoClickedInfo.similar_photos}
           likedPhotos={props.likedPhotos}
           likePhoto={props.likePhoto}
           unLikePhoto={props.unLikePhoto}
         />
       </div>
-
     </div>
   );
   

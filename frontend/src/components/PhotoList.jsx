@@ -4,7 +4,9 @@ import '../styles/PhotoList.scss';
 import PhotoListItem from './PhotoListItem';
 
 const PhotoList = (props) => {
+ 
   const photos = props.photos.map(photo => (
+    
     <PhotoListItem
       photo={photo}
       key={photo.id}
@@ -23,8 +25,8 @@ const PhotoList = (props) => {
       userName={photo.user.username}
       userCity={photo.location.city}
       userCountry={photo.location.country}
-      
     />
+
   ));
   
   return (

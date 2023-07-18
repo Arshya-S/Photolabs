@@ -13,7 +13,6 @@ const App = () => {
     state,
     updateFavPhotos,
     setPhotoSelected,
-    convertArr
   } = useApplicationData();
 
 
@@ -23,17 +22,33 @@ const App = () => {
 
   // Api get request for photo and topic data
   useEffect(() => {
-    const getPhotos = axios('/api/photos');
-    const getTopics = axios('api/topics');
+    const getPhotos = axios.get('/api/photos');
+    const getTopics = axios.get('api/topics');
 
     const getRequests = [getPhotos, getTopics];
-
     Promise.all(getRequests)
       .then(response => {
         setPhotos(response[0].data);
         setTopics(response[1].data);
       });
   },[]);
+
+  // State of topic chosen
+  const [topicChosen, setTopicChosen] = useState('');
+
+  // Api get request for topic chosen specific photos
+  useEffect(() => {
+    if (topicChosen) {
+      axios.get(`/api/topics/photos/${topicChosen}`)
+        .then(response => {
+          setPhotos(response.data);
+        })
+        .catch(err => {
+          console.log('Topic get request error: ', err);
+        });
+    }
+    
+  }, [topicChosen]);
 
 
   return (
@@ -48,6 +63,7 @@ const App = () => {
         likedPhotos ={state.likedPhotos}
         likePhoto={updateFavPhotos.likePhoto}
         unLikePhoto={updateFavPhotos.unLikePhoto}
+        setTopicChosen={setTopicChosen}
       />
 
       {state.photoClicked &&
@@ -57,7 +73,6 @@ const App = () => {
           photoClickedInfo={state.photoClickedInfo}
           setPhotoClickedInfo={setPhotoSelected.setPhotoClickedInfo}
           photos={photos}
-          convertToArray={convertArr.convertToArray}
           likedPhotos={state.likedPhotos}
           likePhoto={updateFavPhotos.likePhoto}
           unLikePhoto={updateFavPhotos.unLikePhoto}
