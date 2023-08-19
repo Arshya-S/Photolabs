@@ -13,7 +13,7 @@ const  PhotoFavButton = function(props) {
     <div
       className="photo-list__fav-icon"
       onClick={() => {
-        props.photoIsLiked === false ? props.likePhoto(props.id) : props.unLikePhoto(props.id);
+        props.photoIsLiked === false ? props.likePhoto(props.photo) : props.unLikePhoto(props.photo);
       }}
     >
       <div className="photo-list__fav-icon-svg">

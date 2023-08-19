@@ -4,6 +4,8 @@ import '../styles/TopNavigationBar.scss';
 import TopicList from './TopicList';
 import FavBadge from './FavBadge';
 
+
+
 const TopNavigation = (props) => {
  
   // Boolean for seeing if state array has values
@@ -11,12 +13,19 @@ const TopNavigation = (props) => {
 
   return (
     <div className="top-nav-bar">
-      <span className="top-nav-bar__logo">PhotoLabs</span>
+      <span className="top-nav-bar__logo" onClick={() => {
+        props.setPhotos(props.originalState);
+      
+      }}>PhotoLabs</span>
       <div className='topics-liked'>
         <TopicList topics={props.topics} setTopicChosen={props.setTopicChosen}/>
-        <FavBadge isFavPhotoExist={likedStatus}/>
+        <div className='fav-badge-div' onClick={() =>{
+          props.setPhotos(props.likedPhotos);
+        }}>
+          <FavBadge isFavPhotoExist={likedStatus} />
+        </div>
+
       </div>
-      
     </div>
   );
 };

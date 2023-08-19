@@ -5,7 +5,6 @@ export const ACTIONS = {
   UNLIKE_PHOTO: 'UNLIKE_PHOTO',
   SET_PHOTO_CLICKED: 'SET_PHOTO_CLICKED',
   SET_PHOTO_CLICKED_INFO: 'SET_PHOTO_CLICKED_INFO',
-  SET_TOPIC_CHOSEN: 'SET_TOPIC_CHOSEN'
 };
 
 const reducer = (state, action) => {
@@ -13,12 +12,12 @@ const reducer = (state, action) => {
   case ACTIONS.LIKE_PHOTO:
     return {
       ...state,
-      likedPhotos: [...state.likedPhotos, action.id],
+      likedPhotos: [...state.likedPhotos, action.photo],
     };
   case ACTIONS.UNLIKE_PHOTO:
     return {
       ...state,
-      likedPhotos: state.likedPhotos.filter(photo => photo !== action.id),
+      likedPhotos: state.likedPhotos.filter(photo => photo !== action.photo),
     };
   case ACTIONS.SET_PHOTO_CLICKED:
     return {
@@ -30,7 +29,6 @@ const reducer = (state, action) => {
       ...state,
       photoClickedInfo: action.info,
     };
-
   default:
     throw new Error(
       `Tried to reduce with unsupported action type: ${action.type}`
@@ -46,21 +44,23 @@ const useApplicationData = () => {
     photoClickedInfo: {},
   });
 
-  const likePhoto = (id) => {
-    dispatch({ type: 'LIKE_PHOTO', id });
+  const likePhoto = (photo) => {
+    dispatch({ type: ACTIONS.LIKE_PHOTO, photo });
   };
 
-  const unLikePhoto = (id) => {
-    dispatch({ type: 'UNLIKE_PHOTO', id });
+  const unLikePhoto = (photo) => {
+    dispatch({ type: ACTIONS.UNLIKE_PHOTO, photo });
   };
 
   const setPhotoClicked = (clicked) => {
-    dispatch({ type: 'SET_PHOTO_CLICKED', clicked });
+    dispatch({ type: ACTIONS.SET_PHOTO_CLICKED, clicked });
   };
 
   const setPhotoClickedInfo = (info) => {
-    dispatch({ type: 'SET_PHOTO_CLICKED_INFO', info });
+    dispatch({ type: ACTIONS.SET_PHOTO_CLICKED_INFO, info });
   };
+
+
 
   const stateFunctions = {
     state: state,

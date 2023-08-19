@@ -6,7 +6,9 @@ import PhotoFavButton from './PhotoFavButton';
 const PhotoListItem = (props) => {
 
   // Boolean value to determine if a photo item is liked sent as prop
-  const photoIsLiked = props.likedPhotos.includes(props.id);
+  const photoIsLiked = props.likedPhotos.includes(props.photo);
+
+  
 
   return (
     <article className={props.classNameItem}>
@@ -16,6 +18,7 @@ const PhotoListItem = (props) => {
         unLikePhoto={props.unLikePhoto}
         id={props.id}
         photoIsLiked = {photoIsLiked}
+        photo={props.photo}
       />
       <img src={props.imageSource} className={props.classNameImage}
         onClick={() => {

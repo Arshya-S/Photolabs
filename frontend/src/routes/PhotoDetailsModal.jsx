@@ -31,7 +31,7 @@ export const PhotoDetailsModal = (props) => {
         classNameImage={'photo-details-modal__image'}
         classNameItem={'photo-details-modal__item'}
         imageSource={props.photoClickedInfo.urls.regular}
-        photoClickedInfo={props.photoClickedInfo}
+        photo={props.photoClickedInfo}
         likedPhotos={props.likedPhotos}
         likePhoto={props.likePhoto}
         unLikePhoto={props.unLikePhoto}
